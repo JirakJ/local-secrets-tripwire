@@ -1,0 +1,56 @@
+<idea-plugin>
+    <id>com.jakubjirak.secretstripwire</id>
+    <name>Local Secrets Tripwire</name>
+    <vendor email="jakub@jirak.dev" url="https://github.com/jakubjirak">Jakub Jirák</vendor>
+
+    <description><![CDATA[
+    <h2>Local Secrets Tripwire</h2>
+    <p>Scans files for accidentally committed secrets (API keys, passwords, tokens, private keys)
+    using pattern matching and Shannon entropy analysis. Highlights findings in the editor with
+    gutter warnings and file-level annotations.</p>
+
+    <h3>Features</h3>
+    <ul>
+        <li><b>Pattern matching</b> — detects AWS keys, GitHub tokens, private keys, JWTs, and more</li>
+        <li><b>Entropy analysis</b> — identifies high-entropy strings that may be secrets</li>
+        <li><b>Editor integration</b> — gutter icons and inline warnings for detected secrets</li>
+        <li><b>Allowlist</b> — suppress false positives via <code>.secrets-allowlist</code></li>
+        <li><b>Configurable</b> — adjust patterns, entropy threshold, and scanning behavior</li>
+    </ul>
+
+    <h3>Part of DevOps Safety Kit</h3>
+    <p>Pairs with <b>Kubernetes Context Guard</b> and <b>Terminal Safety Rails</b> for comprehensive
+    protection against accidental production changes and secret leaks.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Secret detection inspection -->
+        <localInspection
+                id="com.jakubjirak.secretstripwire.inspection"
+                groupName="Security"
+                displayName="Secret detection"
+                shortName="SecretInspection"
+                enabledByDefault="true"
+                level="WARNING"
+                implementationClass="com.jakubjirak.secretstripwire.inspection.SecretInspection"/>
+
+        <!-- Settings page -->
+        <applicationConfigurable
+                id="com.jakubjirak.secretstripwire.settings"
+                parentId="tools"
+                displayName="Secrets Tripwire"
+                instance="com.jakubjirak.secretstripwire.settings.SecretsTripwireConfigurable"/>
+
+        <!-- Persistent settings -->
+        <applicationService
+                serviceImplementation="com.jakubjirak.secretstripwire.settings.SecretsTripwireSettings"/>
+
+        <!-- Notification group -->
+        <notificationGroup
+                id="Secrets Tripwire"
+                displayType="BALLOON"
+                toolWindowId="Secrets Tripwire"/>
+    </extensions>
+</idea-plugin>

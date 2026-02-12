@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <!-- Shield shape (dark theme) -->
+  <path d="M20 3 L34 9 L34 20 C34 28 28 34 20 37 C12 34 6 28 6 20 L6 9 Z"
+        fill="#42A5F5" fill-opacity="0.9" stroke="#64B5F6" stroke-width="1.5"/>
+  <!-- Lock body -->
+  <rect x="15" y="19" width="10" height="8" rx="1.5" fill="white" stroke="#BBDEFB" stroke-width="0.5"/>
+  <!-- Lock shackle -->
+  <path d="M17 19 L17 15 C17 12.2 18.3 11 20 11 C21.7 11 23 12.2 23 15 L23 19"
+        fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Keyhole -->
+  <circle cx="20" cy="23" r="1.5" fill="#42A5F5"/>
+  <!-- Tripwire lines -->
+  <line x1="8" y1="30" x2="14" y2="26" stroke="#FF7043" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2,1"/>
+  <line x1="26" y1="26" x2="32" y2="30" stroke="#FF7043" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2,1"/>
+</svg>
