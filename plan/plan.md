@@ -261,6 +261,45 @@
 - [ ] Marketplace listing
 - [ ] Git tag `v2026.2.1`
 
+## Fáze 13: Git Enhancement — Pre-Commit Secret Scan
+
+- [ ] `SecretCheckinHandlerFactory.kt` — registrace v `plugin.xml`
+- [ ] `StagedFilesScanner.kt` — Git4Idea API pro staged files + diff extraction
+- [ ] `DiffOnlyFilter.kt` — parsování `git diff --cached` pro identifikaci nových řádků
+- [ ] `PrePushHandler.kt` — Git4Idea `GitPushHandler` listener
+- [ ] `CommitBlockStatsService.kt` — persisted statistiky zablokovaných commitů
+- [ ] `PreCommitScanResult.kt`, `StagedSecretFinding.kt`, `ScanMode.kt` — datový model
+- [ ] Hard block vs. warning mód (konfigurovatelné)
+- [ ] Diff-only scan: skenuje pouze přidané/změněné řádky
+- [ ] `// tripwire:allow` inline suppress pro konkrétní řádek
+- [ ] Unit testy pro staged file scanning a diff filtering
+
+## Fáze 14: Git Enhancement — Git History Audit
+
+- [ ] `GitHistoryAuditor.kt` — iterace přes `git log -p` s pattern matching
+- [ ] `IncrementalAuditTracker.kt` — cache posledního skenovaného commitu
+- [ ] `HistoryFindingClassifier.kt` — detekce zda secret je active/removed/rotated
+- [ ] `AuditReportExporter.kt` — JSON/CSV/SARIF generátor
+- [ ] `HistoryAuditToolWindowTab.kt` — nový tab v tool window s výsledky a progress barem
+- [ ] `HistoryAuditResult.kt`, `HistorySecretFinding.kt`, `HistoryFindingStatus.kt` — datový model
+- [ ] Full history scan: `git log -p --all` pro všechny větve
+- [ ] Inkrementální scan: pouze nové commity od posledního auditu
+- [ ] Progress indikátor s možností zrušení
+- [ ] Unit testy pro history scanning a finding classification
+
+## Fáze 15: Git Enhancement — Secret Rotation Tracking
+
+- [ ] `SecretAgeTracker.kt` — `git log -S` wrapper pro sledování secret value changes
+- [ ] `RotationPolicyEngine.kt` — evaluace stáří vs. politika, generování warnings
+- [ ] `RotationTimelineCollector.kt` — sběr rotačních eventů z Git historie
+- [ ] `RotationComplianceReport.kt` — generování compliance reportu
+- [ ] `RotationWarningNotifier.kt` — balloon notifikace pro overdue secrets
+- [ ] `SecretRotationInfo.kt`, `RotationPolicy.kt`, `RotationStatus.kt` — datový model
+- [ ] Konfigurovatelné rotační politiky per secret typ (API klíče: 90d, hesla: 180d)
+- [ ] Rotační timeline: vizualizace kdy byl secret naposledy změněn
+- [ ] Integration s `.env` soubory
+- [ ] Unit testy pro rotation tracking a policy evaluation
+
 ---
 
 ## Budoucí fáze (Paid)
