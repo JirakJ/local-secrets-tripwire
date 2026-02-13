@@ -1,0 +1,7 @@
+<idea-plugin>
+    <!-- Git4Idea optional extensions for Local Secrets Tripwire -->
+    <extensions defaultExtensionNs="com.intellij">
+        <checkinHandlerFactory
+                implementation="com.jakubjirak.secretstripwire.git.SecretCheckinHandlerFactory"/>
+    </extensions>
+</idea-plugin>
