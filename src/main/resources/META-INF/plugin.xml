@@ -5,24 +5,35 @@
     <vendor email="jakub@jirak.dev" url="https://github.com/jakubjirak">Jakub Jirák</vendor>
 
     <description><![CDATA[
-    <h2>Local Secrets Tripwire</h2>
-    <p>Scans files for accidentally committed secrets (API keys, passwords, tokens, private keys)
-    using pattern matching and Shannon entropy analysis. Highlights findings in the editor with
-    gutter warnings and file-level annotations.</p>
+<h2>Local Secrets Tripwire</h2>
+<p>
+  Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire scans your files in
+  real time for API keys, tokens, passwords, and private keys — catching them <b>before</b> they're
+  committed to version control.
+</p>
 
-    <h3>Features</h3>
-    <ul>
-        <li><b>Pattern matching</b> — detects AWS keys, GitHub tokens, private keys, JWTs, and more</li>
-        <li><b>Entropy analysis</b> — identifies high-entropy strings that may be secrets</li>
-        <li><b>Editor integration</b> — gutter icons and inline warnings for detected secrets</li>
-        <li><b>Allowlist</b> — suppress false positives via <code>.secrets-allowlist</code></li>
-        <li><b>Configurable</b> — adjust patterns, entropy threshold, and scanning behavior</li>
-    </ul>
+<h2>Key Features</h2>
+<ul>
+  <li><b>Real-Time Scanning</b> — Detects secrets as you type with inline editor warnings</li>
+  <li><b>Pattern Matching</b> — Recognizes AWS keys, GitHub tokens, private keys, JWTs, and 30+ patterns</li>
+  <li><b>Entropy Analysis</b> — Shannon entropy detection for high-randomness strings that may be secrets</li>
+  <li><b>Gutter Warnings</b> — Visual indicators for lines containing potential secrets</li>
+  <li><b>Allowlist Support</b> — Configure <code>.secrets-allowlist</code> for known false positives</li>
+  <li><b>Custom Patterns</b> — Add organization-specific secret patterns and thresholds</li>
+</ul>
 
-    <h3>Part of DevOps Safety Kit</h3>
-    <p>Pairs with <b>Kubernetes Context Guard</b> and <b>Terminal Safety Rails</b> for comprehensive
-    protection against accidental production changes and secret leaks.</p>
-    ]]></description>
+<h2>Why Local Secrets Tripwire?</h2>
+<p>
+  Git hooks catch secrets at commit time — this plugin catches them at <i>typing</i> time. No external
+  services, no network calls, zero secrets leave your machine.
+</p>
+
+<h2>Free vs Pro</h2>
+<ul>
+  <li><b>Free:</b> All core features — pattern matching, entropy analysis, gutter warnings, allowlist, custom patterns</li>
+  <li><b>Pro:</b> Pre-commit hook integration, secret rotation reminders, team pattern sharing, compliance audit logs, and historical scan reports</li>
+</ul>
+]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends optional="true" config-file="git4idea-extensions.xml">Git4Idea</depends>
