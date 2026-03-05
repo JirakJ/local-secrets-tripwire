@@ -4,8 +4,7 @@
     <name>Local Secrets Tripwire</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirák</vendor>
 
-    <description><![CDATA[
-<h2>Local Secrets Tripwire — Real-Time Secret Detection for Your IDE</h2>
+    <description><![CDATA[<h2>Local Secrets Tripwire — Real-Time Secret Detection for Your IDE</h2>
 
 <p>
 Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire scans your files in real time for API keys, tokens, passwords, and private keys — catching them <b>before</b> they are committed to version control. All scanning happens locally. Zero data leaves your machine.
@@ -32,21 +31,14 @@ Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire sca
   <li>Allowlist support via <code>.secrets-allowlist</code> file for false positive suppression</li>
   <li>Configurable entropy threshold (default 4.5)</li>
   <li>Custom pattern table with ID, name, regex, secret type, severity, and description</li>
-  <li>Team-shared settings via <code>.secrets-tripwire.yaml</code> (Pro)</li>
+  <li>Team-shared settings via <code>.secrets-tripwire.yaml</code></li>
 </ul>
 
-<h3>Advanced Features (Pro)</h3>
 <ul>
   <li>Pre-commit guard to block commits containing secrets</li>
   <li>Git history scan for previously leaked secrets</li>
   <li>Hard blocking mode to prevent saving files with secrets</li>
   <li>Unlimited custom detection patterns</li>
-</ul>
-
-<h3>Pricing</h3>
-<ul>
-  <li><b>Free:</b> 14 built-in patterns, entropy analysis, inline warnings, gutter icons, allowlist, up to 3 custom patterns</li>
-  <li><b>Pro ($2.90/month):</b> Unlimited custom patterns, pre-commit guard, git history scan, hard blocking mode, team-shared configuration</li>
 </ul>
 
 <h3>Requirements</h3>
@@ -61,8 +53,7 @@ Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire sca
   <li>GitHub: <a href="https://github.com/JirakJ/local-secrets-tripwire">github.com/JirakJ/local-secrets-tripwire</a></li>
   <li>Issues: <a href="https://github.com/JirakJ/local-secrets-tripwire/issues">Report a Bug</a></li>
   <li>Author: Jakub Jirák</li>
-</ul>
-    ]]></description>
+</ul>]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends optional="true" config-file="git4idea-extensions.xml">Git4Idea</depends>
@@ -94,6 +85,9 @@ Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire sca
                 id="Secrets Tripwire"
                 displayType="BALLOON"
                 toolWindowId="Secrets Tripwire"/>
+    
+        <notificationGroup id="Local Secrets Tripwire Feedback" displayType="BALLOON"/>
+        <projectActivity implementation="com.jakubjirak.secretstripwire.feedback.FeedbackNotifier"/>
     </extensions>
     <change-notes><![CDATA[
         <h3>What's New</h3>
