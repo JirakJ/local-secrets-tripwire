@@ -1,6 +1,5 @@
 <idea-plugin>
     <id>com.jakubjirak.secretstripwire</id>
-    <product-descriptor code="PSECRETSTRIPWRE" release-date="20260215" release-version="20262" optional="true"/>
     <name>Local Secrets Tripwire</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirák</vendor>
 
