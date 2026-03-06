@@ -8,17 +8,13 @@
 
 ## ✨ Features
 
-### Free Tier
 - **14 built-in patterns** — detects AWS keys, GitHub tokens, Slack tokens, Stripe keys, Google API keys, SendGrid keys, JWTs, private keys, connection strings, and more
 - **Shannon entropy analysis** — identifies high-entropy strings that may be secrets (configurable threshold)
 - **Editor integration** — inline warnings and gutter icons for detected secrets in real time
 - **Local inspection** — runs as a standard IntelliJ code inspection (Security group, WARNING level)
 - **Allowlist support** — suppress false positives via `.secrets-allowlist` file in your project root
-- **Up to 3 custom patterns** — add your own detection regex patterns
+- **Custom patterns** — add your own detection regex patterns
 - **Masked display** — secrets are partially masked in findings for safety
-
-### Pro Tier ($2.90/month)
-- **Unlimited custom patterns** — no cap on custom detection patterns
 - **Pre-commit guard** — optional blocking of commits containing secrets
 - **Git history scan** — scan past commits for leaked secrets
 - **Hard blocking mode** — prevent files with secrets from being saved
