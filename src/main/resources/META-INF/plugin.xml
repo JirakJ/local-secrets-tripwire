@@ -2,6 +2,8 @@
     <id>com.jakubjirak.secretstripwire</id>
     <name>Local Secrets Tripwire</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirák</vendor>
+    <product-descriptor code="PLOCALSECRETSTR" release-date="20260418" release-version="20263" optional="true"/>
+
 
     <description><![CDATA[<h2>Local Secrets Tripwire — Real-Time Secret Detection for Your IDE</h2>
 
