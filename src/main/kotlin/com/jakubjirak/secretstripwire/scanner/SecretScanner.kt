@@ -136,7 +136,218 @@ object SecretScanner {
             severity = SeverityLevel.ERROR,
             description = "SendGrid API Key",
         ),
+        SecretPattern(
+            id = "aws_session_key",
+            name = "AWS Temporary Access Key",
+            regex = """ASIA[0-9A-Z]{16}""",
+            secretType = SecretType.AWS_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "AWS temporary (STS) Access Key ID",
+        ),
+        SecretPattern(
+            id = "github_fine_grained",
+            name = "GitHub Fine-Grained Token",
+            regex = """github_pat_[A-Za-z0-9_]{36,}""",
+            secretType = SecretType.GITHUB_TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "GitHub fine-grained Personal Access Token",
+        ),
+        SecretPattern(
+            id = "github_refresh_token",
+            name = "GitHub Refresh Token",
+            regex = """ghr_[A-Za-z0-9_]{36,}""",
+            secretType = SecretType.GITHUB_TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "GitHub OAuth refresh token",
+        ),
+        SecretPattern(
+            id = "openai_key",
+            name = "OpenAI API Key",
+            regex = """sk-(?:proj-|svcacct-|admin-)?[A-Za-z0-9_-]{20,}T3BlbkFJ[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{48}\b""",
+            secretType = SecretType.API_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "OpenAI API key (project, service-account, or legacy format)",
+        ),
+        SecretPattern(
+            id = "anthropic_key",
+            name = "Anthropic API Key",
+            regex = """sk-ant-[a-z0-9]{2,8}-[A-Za-z0-9_-]{80,}""",
+            secretType = SecretType.API_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "Anthropic Claude API key",
+        ),
+        SecretPattern(
+            id = "gitlab_pat",
+            name = "GitLab Personal Access Token",
+            regex = """glpat-[A-Za-z0-9_-]{20,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "GitLab Personal Access Token",
+        ),
+        SecretPattern(
+            id = "npm_token",
+            name = "npm Access Token",
+            regex = """npm_[A-Za-z0-9]{36}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "npm registry access token",
+        ),
+        SecretPattern(
+            id = "pypi_token",
+            name = "PyPI API Token",
+            regex = """pypi-AgEIcHlwaS5vcmc[A-Za-z0-9_-]{50,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "PyPI upload API token",
+        ),
+        SecretPattern(
+            id = "huggingface_token",
+            name = "Hugging Face Token",
+            regex = """hf_[A-Za-z]{34,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Hugging Face user access token",
+        ),
+        SecretPattern(
+            id = "slack_app_token",
+            name = "Slack App Token",
+            regex = """xapp-\d-[A-Z0-9]+-\d+-[a-f0-9]{32,}""",
+            secretType = SecretType.SLACK_TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Slack app-level token",
+        ),
+        SecretPattern(
+            id = "slack_webhook",
+            name = "Slack Webhook URL",
+            regex = """https://hooks\.slack\.com/services/T[A-Za-z0-9]+/B[A-Za-z0-9]+/[A-Za-z0-9]{20,}""",
+            secretType = SecretType.SLACK_TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Slack incoming webhook URL with embedded secret",
+        ),
+        SecretPattern(
+            id = "stripe_webhook_secret",
+            name = "Stripe Webhook Secret",
+            regex = """whsec_[A-Za-z0-9]{32,}""",
+            secretType = SecretType.STRIPE_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "Stripe webhook signing secret",
+        ),
+        SecretPattern(
+            id = "twilio_api_key",
+            name = "Twilio API Key",
+            regex = """\bSK[a-f0-9]{32}\b""",
+            secretType = SecretType.API_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "Twilio API key SID",
+        ),
+        SecretPattern(
+            id = "telegram_bot_token",
+            name = "Telegram Bot Token",
+            regex = """\b\d{8,10}:AA[A-Za-z0-9_-]{33}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Telegram bot API token",
+        ),
+        SecretPattern(
+            id = "digitalocean_token",
+            name = "DigitalOcean Token",
+            regex = """do[pors]_v1_[a-f0-9]{64}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "DigitalOcean personal access / OAuth token",
+        ),
+        SecretPattern(
+            id = "shopify_token",
+            name = "Shopify Access Token",
+            regex = """shp(?:at|ca|pa|ss)_[a-fA-F0-9]{32}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Shopify private app / access token",
+        ),
+        SecretPattern(
+            id = "databricks_token",
+            name = "Databricks Token",
+            regex = """dapi[a-f0-9]{32}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Databricks personal access token",
+        ),
+        SecretPattern(
+            id = "atlassian_token",
+            name = "Atlassian API Token",
+            regex = """ATATT3[A-Za-z0-9_=-]{20,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Atlassian (Jira/Confluence) API token",
+        ),
+        SecretPattern(
+            id = "doppler_token",
+            name = "Doppler Token",
+            regex = """dp\.(?:pt|st|ct|sa)\.[A-Za-z0-9]{40,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "Doppler service/personal token",
+        ),
+        SecretPattern(
+            id = "vault_token",
+            name = "HashiCorp Vault Token",
+            regex = """hv[sb]\.[A-Za-z0-9_-]{24,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.ERROR,
+            description = "HashiCorp Vault service/batch token",
+        ),
+        SecretPattern(
+            id = "azure_storage_key",
+            name = "Azure Storage Account Key",
+            regex = """AccountKey=[A-Za-z0-9+/]{86}==""",
+            secretType = SecretType.CONNECTION_STRING,
+            severity = SeverityLevel.ERROR,
+            description = "Azure Storage account key in a connection string",
+        ),
+        SecretPattern(
+            id = "mailchimp_key",
+            name = "Mailchimp API Key",
+            regex = """\b[a-f0-9]{32}-us\d{1,2}\b""",
+            secretType = SecretType.API_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "Mailchimp API key",
+        ),
+        SecretPattern(
+            id = "fcm_server_key",
+            name = "Firebase Cloud Messaging Key",
+            regex = """APA91b[A-Za-z0-9_-]{100,}""",
+            secretType = SecretType.API_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "Firebase Cloud Messaging server key / registration token",
+        ),
+        SecretPattern(
+            id = "basic_auth_url",
+            name = "Credentials in URL",
+            regex = """https?://[^:@/\s'"]+:[^:@/\s'"]{6,}@[^\s'"]+""",
+            secretType = SecretType.CONNECTION_STRING,
+            severity = SeverityLevel.WARNING,
+            description = "URL with embedded basic-auth credentials",
+        ),
+        SecretPattern(
+            id = "bearer_token",
+            name = "Bearer Token",
+            regex = """(?i)authorization['"]?\s*[:=]\s*['"]?Bearer\s+[A-Za-z0-9._+/=-]{20,}""",
+            secretType = SecretType.TOKEN,
+            severity = SeverityLevel.WARNING,
+            description = "Hardcoded Authorization: Bearer header",
+        ),
+        SecretPattern(
+            id = "pgp_private_key",
+            name = "PGP Private Key",
+            regex = """-----BEGIN PGP PRIVATE KEY BLOCK-----""",
+            secretType = SecretType.PRIVATE_KEY,
+            severity = SeverityLevel.ERROR,
+            description = "PGP private key block header",
+        ),
     )
+
+    /** Inline suppression marker: any finding on a line containing it is ignored. */
+    const val SUPPRESS_MARKER = "tripwire:ignore"
 
     fun scan(text: String, patterns: List<SecretPattern> = BUILTIN_PATTERNS): List<SecretFinding> {
         if (text.length > MAX_FILE_SIZE) {
@@ -155,8 +366,32 @@ object SecretScanner {
             }
         }
 
-        return findings
+        return deduplicate(filterSuppressed(text, findings))
     }
+
+    /**
+     * Drops findings on lines carrying the [SUPPRESS_MARKER] comment
+     * (e.g. `// tripwire:ignore` or `# tripwire:ignore`).
+     */
+    fun filterSuppressed(text: String, findings: List<SecretFinding>): List<SecretFinding> {
+        if (findings.isEmpty() || !text.contains(SUPPRESS_MARKER)) return findings
+        val suppressedLines = buildSet {
+            text.lines().forEachIndexed { index, line ->
+                if (line.contains(SUPPRESS_MARKER)) add(index + 1)
+            }
+        }
+        return findings.filter { it.lineNumber !in suppressedLines }
+    }
+
+    /**
+     * When multiple patterns match at the same offset, keeps the most severe
+     * (and most specific) finding instead of reporting duplicates.
+     */
+    private fun deduplicate(findings: List<SecretFinding>): List<SecretFinding> =
+        findings
+            .sortedBy { it.severity.ordinal } // ERROR first
+            .distinctBy { it.startOffset }
+            .sortedBy { it.startOffset }
 
     private fun scanWithPattern(text: String, pattern: SecretPattern, findings: MutableList<SecretFinding>) {
         val matches = pattern.compiledRegex.findAll(text)

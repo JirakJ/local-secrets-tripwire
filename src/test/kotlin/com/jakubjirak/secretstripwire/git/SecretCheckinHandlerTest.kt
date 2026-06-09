@@ -96,6 +96,62 @@ class SecretCheckinHandlerTest {
     }
 
     @Test
+    fun `allowlisted values do not block the commit`() {
+        val files = mapOf("config.properties" to "aws_access_key_id = AKIAIOSFODNN7EXAMPLE")
+        val result = SecretCheckinHandler.scanFiles(files, allowlist = listOf("AKIAIOSFODNN7EXAMPLE"))
+
+        assertFalse(result.blocked, "Allowlisted secret must not block the commit")
+        assertTrue(result.findings.isEmpty())
+    }
+
+    @Test
+    fun `custom patterns participate in pre-commit scanning`() {
+        val custom = com.jakubjirak.secretstripwire.model.SecretPattern(
+            id = "internal_token",
+            name = "Internal Token",
+            regex = """INT-[0-9]{12}""",
+            secretType = SecretType.GENERIC_SECRET,
+        )
+        val files = mapOf("notes.txt" to "deploy key INT-123456789012")
+        val result = SecretCheckinHandler.scanFiles(
+            files,
+            patterns = com.jakubjirak.secretstripwire.scanner.SecretScanner.BUILTIN_PATTERNS + custom,
+        )
+
+        assertTrue(result.blocked)
+        assertEquals("internal_token", result.findings.single().finding.pattern.id)
+    }
+
+    @Test
+    fun `suppressed lines do not block the commit`() {
+        val files = mapOf("demo.kt" to "val sample = \"AKIAIOSFODNN7EXAMPLE\" // tripwire:ignore")
+        assertFalse(SecretCheckinHandler.scanFiles(files).blocked)
+    }
+
+    @Test
+    fun `dialog message lists findings masked and capped`() {
+        val files = mapOf("config.properties" to "aws_access_key_id = AKIAIOSFODNN7EXAMPLE")
+        val result = SecretCheckinHandler.scanFiles(files)
+        val message = SecretCheckinHandler.buildDialogMessage(result)
+
+        assertTrue(message.contains("1 potential secret"))
+        assertTrue(message.contains("config.properties:1"))
+        assertTrue(message.contains("AWS Access Key"))
+        assertTrue(message.contains("AKIA********PLE".take(4)), "Masked value expected")
+        assertFalse(message.contains("AKIAIOSFODNN7EXAMPLE"), "Dialog must never show the raw secret")
+    }
+
+    @Test
+    fun `dialog message truncates long finding lists`() {
+        val files = (1..15).associate { "file$it.txt" to "key = AKIAIOSFODNN7EXAMPLE" }
+        val result = SecretCheckinHandler.scanFiles(files)
+        val message = SecretCheckinHandler.buildDialogMessage(result)
+
+        assertEquals(15, result.findings.size)
+        assertTrue(message.contains("…and 5 more"))
+    }
+
+    @Test
     fun `staged secret scan result model properties`() {
         val result = StagedSecretScanResult(
             findings = emptyList(),

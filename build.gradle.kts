@@ -37,10 +37,15 @@ dependencies {
         instrumentationTools()
         pluginVerifier()
         zipSigner()
+        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
     }
 
     testImplementation(libs.junit.api)
     testRuntimeOnly(libs.junit.engine)
+
+    // Platform test framework for UI/editor-level tests and screenshot rendering
+    testImplementation("junit:junit:4.13.2")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.11.4")
 }
 
 // Exclude IDE-provided libraries from plugin distribution
@@ -94,6 +99,8 @@ tasks {
 
     test {
         useJUnitPlatform()
+        // Screenshot rendering opts in via: ./gradlew test -PscreenshotsDir=<absolute path>
+        systemProperty("secretstripwire.screenshots.dir", (project.findProperty("screenshotsDir") ?: "").toString())
     }
 
     wrapper {
