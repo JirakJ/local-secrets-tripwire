@@ -1,24 +1,32 @@
 # Local Secrets Tripwire
 
 [![Build](https://github.com/JirakJ/local-secrets-tripwire/actions/workflows/build.yml/badge.svg)](https://github.com/JirakJ/local-secrets-tripwire/actions/workflows/build.yml)
-[![Version](https://img.shields.io/badge/version-2026.2.2-blue.svg)](https://github.com/JirakJ/local-secrets-tripwire/releases)
+[![Version](https://img.shields.io/badge/version-2026.4.0-blue.svg)](https://github.com/JirakJ/local-secrets-tripwire/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 > Scans files for accidentally committed secrets — API keys, passwords, tokens, and private keys — using pattern matching and Shannon entropy analysis, with real-time editor warnings.
 
 ## ✨ Features
 
-- **14 built-in patterns** — detects AWS keys, GitHub tokens, Slack tokens, Stripe keys, Google API keys, SendGrid keys, JWTs, private keys, connection strings, and more
-- **Shannon entropy analysis** — identifies high-entropy strings that may be secrets (configurable threshold)
-- **Editor integration** — inline warnings and gutter icons for detected secrets in real time
-- **Local inspection** — runs as a standard IntelliJ code inspection (Security group, WARNING level)
+- **42 built-in patterns** — AWS, GitHub (classic, fine-grained, OAuth, refresh), OpenAI, Anthropic, GitLab, npm, PyPI, Hugging Face, Slack, Stripe, Twilio, Telegram, DigitalOcean, Shopify, Databricks, Atlassian, Doppler, Vault, Azure Storage, Mailchimp, Firebase, Google, SendGrid, JWTs, private keys (incl. PGP), connection strings, credentials in URLs, Bearer headers, and more
+- **Shannon entropy analysis** — identifies high-entropy strings that may be secrets (opt-in, configurable threshold)
+- **Editor integration** — severity-aware inline warnings on the exact secret range, in real time
+- **Quick fixes** — add to allowlist or suppress with an inline `tripwire:ignore` comment
+- **Inline suppression** — `// tripwire:ignore` or `# tripwire:ignore` silences a line everywhere (editor + pre-commit)
+- **Local inspection** — runs as a standard IntelliJ code inspection (Security group)
 - **Allowlist support** — suppress false positives via `.secrets-allowlist` file in your project root
 - **Custom patterns** — add your own detection regex patterns
-- **Masked display** — secrets are partially masked in findings for safety
-- **Pre-commit guard** — optional blocking of commits containing secrets
+- **Masked display** — secrets are partially masked in findings; the raw value is never shown
+- **Pre-commit guard** — scans staged files and shows masked findings with a Commit Anyway / Cancel choice
 - **Git history scan** — scan past commits for leaked secrets
-- **Hard blocking mode** — prevent files with secrets from being saved
-- **Team-shared configuration** — share settings via `.secrets-tripwire.yaml`
+
+## 📸 Screenshots
+
+![Editor detection](docs/screenshots/editor-secret-detection.png)
+
+![Settings](docs/screenshots/settings-panel.png)
+
+*Regenerated from the real plugin UI: `./gradlew test --tests "*ScreenshotGeneratorTest*" -PscreenshotsDir=$(pwd)/docs/screenshots`*
 
 ## 📦 Installation
 

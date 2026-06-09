@@ -83,12 +83,13 @@ class GitHistoryAuditor(
         val hashMatch = Regex("^commit ([a-f0-9]{40})", RegexOption.MULTILINE).find(block)
             ?: return null
         val authorMatch = Regex("^Author:\\s+(.+)", RegexOption.MULTILINE).find(block)
+        val dateMatch = Regex("^Date:\\s+(.+)", RegexOption.MULTILINE).find(block)
         val diffContent = block.substringAfter("diff --git", "")
 
         return CommitDiff(
             hash = hashMatch.groupValues[1],
             author = authorMatch?.groupValues?.get(1)?.trim() ?: "unknown",
-            date = Instant.now(),
+            date = parseGitDate(dateMatch?.groupValues?.get(1)?.trim()),
             filePath = extractFilePath(diffContent),
             diffContent = diffContent,
         )
@@ -101,6 +102,19 @@ class GitHistoryAuditor(
 
     companion object {
         private val LOG = Logger.getInstance(GitHistoryAuditor::class.java)
+
+        /** Parses git's default date format ("Mon Jun 8 12:34:56 2026 +0200"); falls back to now. */
+        fun parseGitDate(raw: String?): Instant {
+            if (raw == null) return Instant.now()
+            return try {
+                java.time.ZonedDateTime.parse(
+                    raw,
+                    java.time.format.DateTimeFormatter.ofPattern("EEE MMM d HH:mm:ss yyyy Z", java.util.Locale.ENGLISH),
+                ).toInstant()
+            } catch (_: Exception) {
+                Instant.now()
+            }
+        }
     }
 }
 

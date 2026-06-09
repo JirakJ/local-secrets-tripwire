@@ -50,8 +50,18 @@ class SecretsTripwireConfigurable : BoundConfigurable("Secrets Tripwire") {
                     .bindSelected(settings::enabled)
                     .comment("Enable real-time scanning for secrets in your code")
             }
+            row {
+                checkBox("Pre-commit guard")
+                    .bindSelected(settings::preCommitGuardEnabled)
+                    .comment("Scan staged files before commit and warn when potential secrets are found")
+            }
         }
         group("Entropy Analysis") {
+            row {
+                checkBox("Detect high-entropy strings")
+                    .bindSelected(settings::entropyDetectionEnabled)
+                    .comment("Flag quoted strings with unusually high randomness even when no known pattern matches")
+            }
             row("Entropy threshold:") {
                 textField()
                     .bindText(
@@ -97,11 +107,17 @@ class SecretsTripwireConfigurable : BoundConfigurable("Secrets Tripwire") {
 
     private fun getTablePatterns(): List<SerializablePattern> {
         return (0 until patternsTableModel.rowCount).map { row ->
+            val name = patternsTableModel.getValueAt(row, 0) as? String ?: ""
+            val regex = patternsTableModel.getValueAt(row, 1) as? String ?: ""
+            // Preserve fields not shown in the table (type, description) from the saved pattern
+            val existing = settings.customPatterns.find { it.name == name && it.regex == regex }
             SerializablePattern(
-                id = "custom_${row}",
-                name = patternsTableModel.getValueAt(row, 0) as? String ?: "",
-                regex = patternsTableModel.getValueAt(row, 1) as? String ?: "",
+                id = existing?.id ?: "custom_$row",
+                name = name,
+                regex = regex,
+                secretType = existing?.secretType ?: "GENERIC_SECRET",
                 severity = patternsTableModel.getValueAt(row, 2) as? String ?: "WARNING",
+                description = existing?.description ?: "",
                 enabled = patternsTableModel.getValueAt(row, 3) as? Boolean ?: true,
             )
         }

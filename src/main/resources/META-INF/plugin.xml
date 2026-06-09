@@ -2,7 +2,7 @@
     <id>com.jakubjirak.secretstripwire</id>
     <name>Local Secrets Tripwire</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirák</vendor>
-    <product-descriptor code="PLOCALSECRETSTR" release-date="20260418" release-version="20263" optional="true"/>
+    <product-descriptor code="PSECRETSTRIPWRE" release-date="20260609" release-version="20264" optional="true"/>
 
 
     <description><![CDATA[<h2>Local Secrets Tripwire — Real-Time Secret Detection for Your IDE</h2>
@@ -13,33 +13,33 @@ Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire sca
 
 <h3>Detection Engine</h3>
 <ul>
-  <li>14 built-in patterns for AWS keys, GitHub tokens, Slack tokens, Stripe keys, Google API keys, SendGrid keys, JWTs, private keys, connection strings, and more</li>
-  <li>Shannon entropy analysis for high-randomness strings (configurable threshold)</li>
+  <li>42 built-in patterns: AWS (incl. temporary keys), GitHub (classic, fine-grained, OAuth, refresh), OpenAI, Anthropic, GitLab, npm, PyPI, Hugging Face, Slack (bot/user/app tokens, webhooks), Stripe (keys and webhook secrets), Twilio, Telegram, DigitalOcean, Shopify, Databricks, Atlassian, Doppler, HashiCorp Vault, Azure Storage, Mailchimp, Firebase, Google, SendGrid, JWTs, private keys (RSA/EC/DSA/OpenSSH/PGP), connection strings, credentials in URLs, Bearer headers, and more</li>
+  <li>Shannon entropy analysis for high-randomness strings (opt-in, configurable threshold)</li>
   <li>Custom regex patterns for organization-specific secrets</li>
+  <li>Overlapping matches are deduplicated to the most severe finding</li>
   <li>Runs as a standard IntelliJ code inspection in the Security group</li>
 </ul>
 
 <h3>Editor Integration</h3>
 <ul>
-  <li>Inline warnings for lines containing potential secrets</li>
-  <li>Gutter icons for quick identification of secret locations</li>
-  <li>Hover tooltips showing secret type, severity, masked value, and entropy score</li>
-  <li>Masked display of detected values for safety</li>
+  <li>Severity-aware inline highlighting of the exact secret range</li>
+  <li>Quick fixes: add to allowlist or suppress with an inline <code>tripwire:ignore</code> comment</li>
+  <li>Masked display of detected values for safety — the raw secret is never shown</li>
 </ul>
 
 <h3>Configuration</h3>
 <ul>
   <li>Allowlist support via <code>.secrets-allowlist</code> file for false positive suppression</li>
+  <li>Inline suppression with <code>tripwire:ignore</code> comments</li>
   <li>Configurable entropy threshold (default 4.5)</li>
-  <li>Custom pattern table with ID, name, regex, secret type, severity, and description</li>
-  <li>Team-shared settings via <code>.secrets-tripwire.yaml</code></li>
+  <li>Custom pattern table with name, regex, severity, and enable toggle</li>
 </ul>
 
+<h3>Git Integration</h3>
 <ul>
-  <li>Pre-commit guard to block commits containing secrets</li>
+  <li>Pre-commit guard — scans staged files and shows the findings (masked) with a Commit Anyway / Cancel choice</li>
+  <li>Respects the allowlist, custom patterns, and inline suppressions</li>
   <li>Git history scan for previously leaked secrets</li>
-  <li>Hard blocking mode to prevent saving files with secrets</li>
-  <li>Unlimited custom detection patterns</li>
 </ul>
 
 <h3>Requirements</h3>
@@ -91,16 +91,18 @@ Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire sca
         <projectActivity implementation="com.jakubjirak.secretstripwire.feedback.FeedbackNotifier"/>
     </extensions>
     <change-notes><![CDATA[
-        <h3>What's New</h3>
+        <h3>2026.4.0</h3>
         <ul>
-            <li><b>Real-Time Secret Scanning</b> - Detects API keys, tokens, and passwords as you type with inline editor warnings</li>
-            <li><b>14 Built-in Patterns</b> - Recognizes AWS keys, GitHub tokens, Slack tokens, Stripe keys, JWTs, private keys, and more</li>
-            <li><b>Shannon Entropy Analysis</b> - Identifies high-randomness strings that may be secrets using configurable thresholds</li>
-            <li><b>Gutter Warnings</b> - Visual icons on lines containing potential secrets for quick identification</li>
-            <li><b>Allowlist Support</b> - Suppress false positives with a .secrets-allowlist file in your project root</li>
-            <li><b>Custom Patterns</b> - Add your own regex detection patterns for organization-specific secrets</li>
-            <li><b>Pre-Commit Guard</b> - Optionally block commits that contain detected secrets</li>
-            <li><b>Git History Scan</b> - Scan past commits to find previously leaked secrets in your repository</li>
+            <li><b>NEW: 42 detection patterns (up from 15)</b> - OpenAI, Anthropic, GitLab, npm, PyPI, Hugging Face, Slack webhooks, Twilio, Telegram, DigitalOcean, Shopify, Databricks, Atlassian, Doppler, Vault, Azure Storage, Mailchimp, Firebase, credentials in URLs, Bearer headers, PGP keys, and more</li>
+            <li><b>NEW: Quick fixes</b> - Add a finding to the allowlist or suppress it with an inline tripwire:ignore comment, right from the inspection popup</li>
+            <li><b>NEW: Inline suppression</b> - A tripwire:ignore comment silences findings on that line in the editor and the pre-commit guard</li>
+            <li><b>NEW: Severity-aware highlighting</b> - The exact secret range is underlined with the pattern's severity, not just the first token of the line</li>
+            <li><b>NEW: Pre-commit dialog</b> - The guard now shows the findings (masked) with a Commit Anyway / Cancel choice instead of cancelling silently</li>
+            <li><b>FIX: Entropy detection is wired into the inspection</b> - the threshold setting previously had no effect; detection is now an opt-in toggle</li>
+            <li><b>FIX: Pre-commit guard respects the allowlist, custom patterns, and the plugin enable toggle</b></li>
+            <li><b>FIX: Settings table no longer loses pattern type and description on save</b></li>
+            <li><b>FIX: Git history audit records real commit dates</b></li>
+            <li><b>FIX: Overlapping matches are deduplicated to the most severe finding</b></li>
         </ul>
     ]]></change-notes>
 </idea-plugin>

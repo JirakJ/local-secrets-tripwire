@@ -21,6 +21,8 @@ class SecretsTripwireSettings : PersistentStateComponent<SecretsTripwireSettings
 
     var enabled: Boolean = true
     var entropyThreshold: Double = EntropyAnalyzer.DEFAULT_THRESHOLD
+    var entropyDetectionEnabled: Boolean = false
+    var preCommitGuardEnabled: Boolean = true
 
     @XCollection(style = XCollection.Style.v2)
     var customPatterns: MutableList<SerializablePattern> = mutableListOf()
@@ -32,7 +34,13 @@ class SecretsTripwireSettings : PersistentStateComponent<SecretsTripwireSettings
     }
 
     fun resolveCustomPatterns(): List<SecretPattern> {
-        return customPatterns.map { it.toSecretPattern() }
+        val resolved = customPatterns.map { it.toSecretPattern() }
+        val isPremium = try {
+            com.jakubjirak.secretstripwire.licensing.FreemiumGate.getInstance().isPremiumUser()
+        } catch (_: Exception) {
+            false
+        }
+        return com.jakubjirak.secretstripwire.licensing.FreemiumGate.effectiveCustomPatterns(resolved, isPremium)
     }
 
     companion object {
