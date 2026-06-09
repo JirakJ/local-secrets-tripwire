@@ -8,7 +8,7 @@
 |-------------|----------------------------------------|
 | **Name**    | Local Secrets Tripwire                 |
 | **Plugin ID** | `com.jakubjirak.secretstripwire`    |
-| **Version** | 2026.2.8                               |
+| **Version** | 2026.4.0                               |
 | **Category** | Code Quality / Security               |
 | **Tags**    | Security, Secrets Detection, API Keys, Entropy Analysis, Pre-commit Hook |
 
@@ -34,12 +34,12 @@
 
 #### 🆓 Free Tier
 
-- 🔍 **14 Built-in Patterns** — Detects AWS keys, GitHub tokens, Slack tokens, Stripe keys, Google API keys, SendGrid keys, JWTs, private keys, connection strings, and more
+- 🔍 **42 Built-in Patterns** — AWS, GitHub, OpenAI, Anthropic, GitLab, npm, PyPI, Hugging Face, Slack, Stripe, Twilio, Telegram, DigitalOcean, Shopify, Databricks, Atlassian, Doppler, Vault, Azure, Mailchimp, Firebase, Google, SendGrid, JWTs, private keys, connection strings, and more
 - 📊 **Shannon Entropy Analysis** — Identifies high-entropy strings that may be secrets (configurable threshold, default 4.5)
 - ✏️ **Editor Integration** — Inline warnings and gutter icons for detected secrets in real time
 - 🔎 **Local Inspection** — Runs as a standard IntelliJ code inspection (Security group, WARNING level)
 - ✅ **Allowlist Support** — Suppress false positives via `.secrets-allowlist` file in your project root
-- 🧩 **Up to 3 Custom Patterns** — Add your own detection regex patterns
+- 🧩 **Up to 10 Custom Patterns** — Add your own detection regex patterns
 - 🙈 **Masked Display** — Secrets are partially masked in findings for safety
 
 #### ⭐ Pro Tier — $2.90/month
@@ -56,7 +56,7 @@
 
 | Tier     | Price           | Highlights                                      |
 |----------|-----------------|--------------------------------------------------|
-| **Free** | $0              | 14 patterns, entropy analysis, editor warnings   |
+| **Free** | $0              | 42 patterns, entropy analysis, editor warnings   |
 | **Pro**  | $2.90/month     | Unlimited patterns, pre-commit guard, git scan   |
 
 ---
