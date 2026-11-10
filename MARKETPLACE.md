@@ -26,8 +26,8 @@ Prevent secret leaks with real-time detection of API keys, tokens, passwords, an
   <li><b>Privacy-first architecture</b> — all scanning runs locally; secrets never leave your machine</li>
   <li><b>Allowlist support</b> — suppress false positives with <code>.secrets-allowlist</code></li>
   <li><b>Masked secret display</b> — detected secrets are partially masked for safety</li>
-  <li><b>Pre-commit guard (Pro)</b> — block commits containing secrets</li>
-  <li><b>Git history scan (Pro)</b> — find historically committed secrets</li>
+  <li><b>Pre-commit guard</b> — block commits containing secrets</li>
+  <li><b>Git history scan</b> — find historically committed secrets</li>
 </ul>
 
 <h3>Detects These Secret Types</h3>
@@ -44,36 +44,21 @@ Prevent secret leaks with real-time detection of API keys, tokens, passwords, an
   <li>Generic API keys, passwords, and secrets</li>
 </ul>
 
-<h2>Free Tier</h2>
-<p>Powerful local secret detection — no credit card required:</p>
+<h2>Free &amp; Open Source</h2>
+<p>Every feature is free for everyone — no license needed. Source code: <a href="https://github.com/JirakJ/local-secrets-tripwire">github.com/JirakJ/local-secrets-tripwire</a> (Apache-2.0). Issues and pull requests are welcome.</p>
 <ul>
   <li>All 14 built-in detection patterns</li>
   <li>Real-time editor highlighting with gutter warnings</li>
   <li>Shannon entropy analysis (configurable threshold)</li>
   <li><code>.secrets-allowlist</code> for false positive suppression</li>
-  <li>Up to 3 custom detection patterns</li>
+  <li>Unlimited custom detection patterns</li>
   <li>Masked secret display</li>
   <li>Settings page for enabling/disabling individual patterns</li>
-</ul>
-
-<h2>Pro Tier ($2.90/month)</h2>
-<p>Designed for teams who need airtight secret protection:</p>
-<ul>
-  <li><b>Unlimited custom patterns</b> — define detection rules specific to your infrastructure</li>
   <li><b>Git history scan</b> — find secrets that were previously committed to the repository</li>
   <li><b>Hard blocking mode</b> — prevent file saves when secrets are detected</li>
   <li><b>Pre-commit guard</b> — block commits containing secrets automatically</li>
   <li><b>Team-shared configuration</b> — commit <code>.secrets-tripwire.yaml</code> for consistent team detection</li>
   <li><b>Report export</b> — export findings in SARIF and CSV formats</li>
-</ul>
-
-<h2>Team Tier ($5.90/user/month)</h2>
-<p>Designed for teams who require compliance and standardized secret detection:</p>
-<ul>
-  <li>All Pro features included</li>
-  <li><b>Company-specific pattern import/export</b> — share detection patterns across the organization</li>
-  <li><b>Compliance reports</b> — generate reports for security audits</li>
-  <li><b>Team-shared pattern configurations</b> — centralized management of detection rules</li>
 </ul>
 
 <h2>Getting Started</h2>
@@ -108,15 +93,12 @@ security, secrets, api-keys, leak-prevention, code-scanning
 Security
 
 ## Pricing
-| Tier | Price | Features |
-|------|-------|----------|
-| Free | $0 | 14 built-in patterns, real-time scanning, entropy analysis, allowlist support, up to 3 custom patterns |
-| Pro | $2.90/month or $29/year | Unlimited custom patterns, git history scan, hard blocking, pre-commit guard, team config, report export |
-| Team | $5.90/user/month | All Pro features + company pattern import/export, compliance reports, team-shared configurations |
+
+Free & open source (Apache-2.0) — every feature is available to everyone, no license needed.
 
 ## Screenshots Needed
 1. **Real-time detection** — editor view showing highlighted secrets with gutter icons (🔐) and inline warning annotations
 2. **Secret details tooltip** — hover popup displaying the detected secret type, masked value, and suggested actions
 3. **Settings panel** — configuration page showing all 14 detection patterns with enable/disable toggles
-4. **Pre-commit guard (Pro)** — dialog blocking a commit that contains detected secrets
-5. **Git history scan (Pro)** — results view showing historically committed secrets across the repository
+4. **Pre-commit guard** — dialog blocking a commit that contains detected secrets
+5. **Git history scan** — results view showing historically committed secrets across the repository
