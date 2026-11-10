@@ -33,15 +33,7 @@ class SecretsTripwireSettings : PersistentStateComponent<SecretsTripwireSettings
         XmlSerializerUtil.copyBean(state, this)
     }
 
-    fun resolveCustomPatterns(): List<SecretPattern> {
-        val resolved = customPatterns.map { it.toSecretPattern() }
-        val isPremium = try {
-            com.jakubjirak.secretstripwire.licensing.FreemiumGate.getInstance().isPremiumUser()
-        } catch (_: Exception) {
-            false
-        }
-        return com.jakubjirak.secretstripwire.licensing.FreemiumGate.effectiveCustomPatterns(resolved, isPremium)
-    }
+    fun resolveCustomPatterns(): List<SecretPattern> = customPatterns.map { it.toSecretPattern() }
 
     companion object {
         fun getInstance(): SecretsTripwireSettings =

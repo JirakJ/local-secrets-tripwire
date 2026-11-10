@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026.8.0] - 2026-11-10
+
+### Changed
+- The plugin is now completely free — all features unlocked, no license needed.
+- Source code is now open source under Apache-2.0: https://github.com/JirakJ/local-secrets-tripwire
+
+### Removed
+- Licensing check (`FreemiumGate`) and the 10-pattern cap on custom detection patterns.
+
 ## [2026.4.0] - 2026-06-09 🚀 Feature Release
 
 ### Added
