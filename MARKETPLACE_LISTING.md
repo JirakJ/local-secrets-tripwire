@@ -32,19 +32,15 @@
 
 ### ✨ Key Features
 
-#### 🆓 Free Tier
+#### ✨ Features (all free)
 
 - 🔍 **42 Built-in Patterns** — AWS, GitHub, OpenAI, Anthropic, GitLab, npm, PyPI, Hugging Face, Slack, Stripe, Twilio, Telegram, DigitalOcean, Shopify, Databricks, Atlassian, Doppler, Vault, Azure, Mailchimp, Firebase, Google, SendGrid, JWTs, private keys, connection strings, and more
 - 📊 **Shannon Entropy Analysis** — Identifies high-entropy strings that may be secrets (configurable threshold, default 4.5)
 - ✏️ **Editor Integration** — Inline warnings and gutter icons for detected secrets in real time
 - 🔎 **Local Inspection** — Runs as a standard IntelliJ code inspection (Security group, WARNING level)
 - ✅ **Allowlist Support** — Suppress false positives via `.secrets-allowlist` file in your project root
-- 🧩 **Up to 10 Custom Patterns** — Add your own detection regex patterns
+- 🧩 **Unlimited Custom Patterns** — Add your own detection regex patterns
 - 🙈 **Masked Display** — Secrets are partially masked in findings for safety
-
-#### ⭐ Pro Tier — $2.90/month
-
-- ♾️ **Unlimited Custom Patterns** — No cap on custom detection patterns
 - 🛡️ **Pre-commit Guard** — Optional blocking of commits containing secrets
 - 📜 **Git History Scan** — Scan past commits for leaked secrets
 - 🚫 **Hard Blocking Mode** — Prevent files with secrets from being saved
@@ -54,10 +50,7 @@
 
 ### 💰 Pricing Model
 
-| Tier     | Price           | Highlights                                      |
-|----------|-----------------|--------------------------------------------------|
-| **Free** | $0              | 42 patterns, entropy analysis, editor warnings   |
-| **Pro**  | $2.90/month     | Unlimited patterns, pre-commit guard, git scan   |
+Free & open source (Apache-2.0) — every feature is available to everyone, no license needed.
 
 ---
 
@@ -97,8 +90,8 @@
 3. **Custom Patterns Table** — Adding custom regex patterns with ID, Name, Regex, Secret Type, and Severity fields
 4. **Allowlist File** — Example `.secrets-allowlist` file suppressing false positives
 5. **Inspection Results** — IntelliJ inspection results panel showing grouped secret findings
-6. **Pre-commit Guard (Pro)** — Commit dialog showing blocked commit due to detected secrets
-7. **Git History Scan (Pro)** — Tool window displaying secrets found in past commits
+6. **Pre-commit Guard** — Commit dialog showing blocked commit due to detected secrets
+7. **Git History Scan** — Tool window displaying secrets found in past commits
 8. **Masked Display** — Partially masked secret values in the findings panel for safe viewing
 
 ---
@@ -154,12 +147,10 @@
 - [ ] Screenshots (1280×800 minimum) captured for all key features
 - [ ] Short description within 255-character limit
 - [ ] Full description reviewed and proofread
-- [ ] Pricing tiers configured in JetBrains Marketplace portal
 - [ ] Product descriptor code `PSECRETSTRIPWRE` verified
 - [ ] Plugin signed with JetBrains Marketplace certificate
 - [ ] License agreement (EULA) uploaded
 - [ ] CHANGELOG.md up to date with latest version notes
 - [ ] Compatibility tested on minimum build (232)
-- [ ] Free tier vs Pro tier feature gating verified
 - [ ] `.secrets-allowlist` documentation included in plugin help
 - [ ] Support email monitored and responsive
