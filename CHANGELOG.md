@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2026.9.0] - 2026-11-11
+
 ### Changed
 - Settings: the custom pattern group no longer says "paid feature: max 10 free" — there is no limit.
 
