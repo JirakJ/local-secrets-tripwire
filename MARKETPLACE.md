@@ -20,57 +20,29 @@ Prevent secret leaks with real-time detection of API keys, tokens, passwords, an
 
 <h2>Key Features</h2>
 <ul>
-  <li><b>14 built-in detection patterns</b> — AWS keys, GitHub tokens, Slack tokens, Stripe keys, Google API keys, SendGrid keys, JWTs, private keys, connection strings, and more</li>
-  <li><b>Real-time editor scanning</b> — highlights secrets as you type with gutter icons (🔐) and inline warnings</li>
-  <li><b>Shannon entropy analysis</b> — identifies high-entropy strings that may be secrets (configurable threshold)</li>
-  <li><b>Privacy-first architecture</b> — all scanning runs locally; secrets never leave your machine</li>
-  <li><b>Allowlist support</b> — suppress false positives with <code>.secrets-allowlist</code></li>
-  <li><b>Masked secret display</b> — detected secrets are partially masked for safety</li>
-  <li><b>Pre-commit guard</b> — block commits containing secrets</li>
-  <li><b>Git history scan</b> — find historically committed secrets</li>
-</ul>
-
-<h3>Detects These Secret Types</h3>
-<ul>
-  <li>AWS Access Keys &amp; Secret Keys</li>
-  <li>GitHub Tokens (<code>ghp_</code>, <code>ghs_</code>, <code>gho_</code>)</li>
-  <li>Slack Bot &amp; User Tokens (<code>xoxb-</code>, <code>xoxp-</code>)</li>
-  <li>Stripe Keys (<code>sk_live_</code>, <code>sk_test_</code>)</li>
-  <li>Google API Keys (<code>AIza...</code>)</li>
-  <li>SendGrid Keys (<code>SG...</code>)</li>
-  <li>Private Keys (RSA, EC, OpenSSH)</li>
-  <li>Connection Strings (JDBC, MongoDB, Redis)</li>
-  <li>JWT Tokens</li>
-  <li>Generic API keys, passwords, and secrets</li>
+  <li><b>42 built-in detection patterns</b> — AWS, GitHub, OpenAI, Anthropic, GitLab, npm, PyPI, Hugging Face, Slack, Stripe, Twilio, Google, SendGrid, JWTs, private keys (RSA/EC/DSA/OpenSSH/PGP), connection strings, credentials in URLs, Bearer headers and more</li>
+  <li><b>Real-time inspection</b> — severity-aware highlighting of the exact secret range (Security inspection group)</li>
+  <li><b>Shannon entropy analysis</b> — opt-in detection of high-randomness strings with a configurable threshold</li>
+  <li><b>Custom patterns</b> — your own regexes with name, severity and enable toggle</li>
+  <li><b>Allowlist &amp; inline suppression</b> — <code>.secrets-allowlist</code> and <code>tripwire:ignore</code> comments, both available as quick fixes</li>
+  <li><b>Masked display</b> — detected values are masked; the raw secret is never shown</li>
+  <li><b>Pre-commit guard</b> — scans the files being committed and offers Commit Anyway / Cancel</li>
+  <li><b>Privacy-first</b> — all scanning runs locally; nothing leaves your machine</li>
 </ul>
 
 <h2>Free &amp; Open Source</h2>
 <p>Every feature is free for everyone — no license needed. Source code: <a href="https://github.com/JirakJ/local-secrets-tripwire">github.com/JirakJ/local-secrets-tripwire</a> (Apache-2.0). Issues and pull requests are welcome.</p>
-<ul>
-  <li>All 14 built-in detection patterns</li>
-  <li>Real-time editor highlighting with gutter warnings</li>
-  <li>Shannon entropy analysis (configurable threshold)</li>
-  <li><code>.secrets-allowlist</code> for false positive suppression</li>
-  <li>Unlimited custom detection patterns</li>
-  <li>Masked secret display</li>
-  <li>Settings page for enabling/disabling individual patterns</li>
-  <li><b>Git history scan</b> — find secrets that were previously committed to the repository</li>
-  <li><b>Hard blocking mode</b> — prevent file saves when secrets are detected</li>
-  <li><b>Pre-commit guard</b> — block commits containing secrets automatically</li>
-  <li><b>Team-shared configuration</b> — commit <code>.secrets-tripwire.yaml</code> for consistent team detection</li>
-  <li><b>Report export</b> — export findings in SARIF and CSV formats</li>
-</ul>
 
 <h2>Getting Started</h2>
 <ol>
   <li><b>Install</b> — search "Local Secrets Tripwire" in <code>Settings → Plugins</code> and click Install</li>
   <li><b>Open any file</b> — secrets are detected and highlighted in real time as you type</li>
-  <li><b>Review findings</b> — click gutter icons (🔐) to see secret details and take action</li>
+  <li><b>Review findings</b> — hover a highlighted secret and press Alt+Enter for the allowlist / suppress quick fixes</li>
 </ol>
 
 <h2>Compatibility</h2>
 <ul>
-  <li>IntelliJ IDEA 2024.3+ and all JetBrains IDEs</li>
+  <li>IntelliJ IDEA 2023.2+ and other IntelliJ-based IDEs</li>
   <li>macOS, Linux, and Windows</li>
   <li>Works with any programming language and file type</li>
 </ul>
@@ -96,9 +68,8 @@ Security
 
 Free & open source (Apache-2.0) — every feature is available to everyone, no license needed.
 
-## Screenshots Needed
-1. **Real-time detection** — editor view showing highlighted secrets with gutter icons (🔐) and inline warning annotations
-2. **Secret details tooltip** — hover popup displaying the detected secret type, masked value, and suggested actions
-3. **Settings panel** — configuration page showing all 14 detection patterns with enable/disable toggles
-4. **Pre-commit guard** — dialog blocking a commit that contains detected secrets
-5. **Git history scan** — results view showing historically committed secrets across the repository
+## Screenshots
+1. **Real-time detection** — editor with a highlighted secret and its masked description
+2. **Quick fixes** — Alt+Enter menu with "Add to allowlist" and "Suppress with tripwire:ignore"
+3. **Settings** — entropy threshold and the custom pattern table
+4. **Pre-commit guard** — dialog listing masked findings with Commit Anyway / Cancel

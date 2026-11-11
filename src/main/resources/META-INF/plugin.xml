@@ -38,13 +38,11 @@ Leaked secrets are the #1 cause of security breaches. Local Secrets Tripwire sca
 <ul>
   <li>Pre-commit guard — scans staged files and shows the findings (masked) with a Commit Anyway / Cancel choice</li>
   <li>Respects the allowlist, custom patterns, and inline suppressions</li>
-  <li>Git history scan for previously leaked secrets</li>
 </ul>
 
 <h3>Requirements</h3>
 <ul>
-  <li>IntelliJ IDEA 2024.3+ (or any JetBrains IDE based on IntelliJ Platform)</li>
-  <li>Java 17+</li>
+  <li>IntelliJ IDEA 2023.2+ (or another IntelliJ-based IDE, build 232+)</li>
   <li>Git4Idea plugin (optional, for Git integration features)</li>
 </ul>
 

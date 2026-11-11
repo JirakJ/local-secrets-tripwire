@@ -1,6 +1,6 @@
 # Local Secrets Tripwire
 
-[![Build](https://github.com/JirakJ/local-secrets-tripwire/actions/workflows/build.yml/badge.svg)](https://github.com/JirakJ/local-secrets-tripwire/actions/workflows/build.yml)
+[![Build](https://github.com/JirakJ/local-secrets-tripwire/actions/workflows/verify.yml/badge.svg)](https://github.com/JirakJ/local-secrets-tripwire/actions/workflows/verify.yml)
 [![Version](https://img.shields.io/badge/version-2026.8.0-blue.svg)](https://github.com/JirakJ/local-secrets-tripwire/releases)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
@@ -20,7 +20,6 @@
 - **Custom patterns** — add your own detection regex patterns
 - **Masked display** — secrets are partially masked in findings; the raw value is never shown
 - **Pre-commit guard** — scans staged files and shows masked findings with a Commit Anyway / Cancel choice
-- **Git history scan** — scan past commits for leaked secrets
 
 ## 📸 Screenshots
 
@@ -113,8 +112,7 @@ Each line is matched against detected secret values. Matching findings are exclu
 
 ## 📋 Requirements
 
-- IntelliJ IDEA 2024.3+ (or any JetBrains IDE based on IntelliJ Platform)
-- Java 17+
+- IntelliJ IDEA 2023.2+ (or another IntelliJ-based IDE, build 232+)
 - Git4Idea plugin (optional, for Git integration features)
 
 ## 🏗️ Building from Source
