@@ -75,7 +75,7 @@ class SecretsTripwireConfigurable : BoundConfigurable("Secrets Tripwire") {
                     )
             }
         }
-        group("Custom Patterns (paid feature: max 10 free)") {
+        group("Custom Patterns") {
             row {
                 cell(tablePanel)
                     .align(Align.FILL)
