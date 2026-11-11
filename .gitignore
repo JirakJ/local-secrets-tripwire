@@ -23,3 +23,6 @@ Thumbs.db
 
 # Plugin build
 /sandbox/
+
+# Local-only artefacts and secrets
+.env

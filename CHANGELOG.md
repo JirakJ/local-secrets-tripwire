@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- Settings: the custom pattern group no longer says "paid feature: max 10 free" — there is no limit.
+
+### Removed
+- Unused `GitHistoryAuditor` and `SecretRotationTracker` (no action or UI ever invoked them) and the documentation claiming a Git history scan, SARIF/CSV export, hard blocking mode and team YAML configuration.
+
 ## [2026.8.0] - 2026-11-10
 
 ### Changed
